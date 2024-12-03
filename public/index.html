@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추모 페이지</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        /* 이미지 스타일 */
+        img {
+            max-width: 100%;
+            max-height: 50vh;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+        }
+
+        /* 비디오 스타일 */
+        video {
+            max-width: 80%;
+            margin-bottom: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+        }
+
+        /* 댓글 작성 폼 */
+        #commentForm {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        textarea {
+            resize: none;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+
+        /* 댓글 리스트 */
+        #commentsList {
+            list-style: none;
+            padding: 0;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        #commentsList li {
+            background: #222;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <!-- 이미지 섹션 -->
+    <h1>급식실&nbsp폐암산재&nbsp사망노동자<br>故 이혜경 조합원을 추모합니다</h1>
+    <img src="uploaded_image.jpeg" alt="추모 이미지" id="mainImage">
+
+    <!-- 동영상 섹션 -->
+    <video controls>
+        <source src="uploaded_video.mp4" type="video/mp4">
+        브라우저에서 동영상을 지원하지 않습니다.
+    </video>
+
+    <!-- 댓글 작성 섹션 -->
+    <h2>댓글 남기기</h2>
+    <form id="commentForm">
+        <textarea id="commentInput" rows="4" placeholder="댓글을 입력하세요..." required></textarea>
+        <button type="submit">댓글 작성</button>
+    </form>
+
+    <!-- 댓글 리스트 -->
+    <ul id="commentsList">
+        <!-- 댓글이 이곳에 추가됩니다 -->
+    </ul>
+
+    <script>
+        // 댓글 작성 로직
+        document.getElementById("commentForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // 폼 제출 방지
+
+            const commentInput = document.getElementById("commentInput");
+            const commentText = commentInput.value.trim();
+
+            if (commentText) {
+                // 댓글 리스트 가져오기
+                const commentsList = document.getElementById("commentsList");
+
+                // 새로운 댓글 생성
+                const commentItem = document.createElement("li");
+                commentItem.textContent = commentText;
+
+                // 새 댓글을 리스트 맨 위에 추가
+                commentsList.insertBefore(commentItem, commentsList.firstChild);
+
+                // 입력 필드 초기화
+                commentInput.value = '';
+            } else {
+                alert("댓글을 입력해주세요!");
+            }
+        });
+    </script>
+</body>
+<script src="app.js"></script>
+</html>
